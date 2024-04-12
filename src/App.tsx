@@ -185,6 +185,13 @@ export default function App() {
 
     const { clientX, clientY } = getMouseCoordinates(event);
 
+    if (tool === Tools.pan || event.button === 1 || pressedKeys.has(" ")) {
+      setAction("panning");
+      setStartPanMousePosition({ x: clientX, y: clientY });
+      document.body.style.cursor = "grabbing";
+      return;
+    }
+
     if (event.button === 1 || pressedKeys.has(" ")) {
       setAction("panning");
       setStartPanMousePosition({ x: clientX, y: clientY });

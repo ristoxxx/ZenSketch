@@ -36,6 +36,7 @@ export type ActionsType =
   | "none";
 
 export const Tools = {
+  pan: "pan",
   selection: "selection",
   rectangle: "rectangle",
   line: "line",
