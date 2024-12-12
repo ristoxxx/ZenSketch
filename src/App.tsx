@@ -16,7 +16,7 @@ import {
   Tools,
   ActionsType,
 } from "./types";
-import { ActionBar, ControlPanel, Info } from "./components";
+import { ActionBar, ControlPanel, Info, Canvas } from "./components";
 import {
   adjustElementCoordinates,
   adjustmentRequired,
@@ -43,6 +43,21 @@ export default function App() {
   const [scaleOffset, setScaleOffset] = useState({ x: 0, y: 0 });
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
   const pressedKeys = usePressedKeys();
+  //  Lisätty tila canvaksen nimelle
+  const [canvasName, setCanvasName] = useState("moi");
+
+  const handleCanvasNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setCanvasName(event.target.value);
+  };
+
+  const handleCreateCanvas = () => {
+    if (canvasName.trim() === "") {
+      alert("Anna canvakselle nimi.");
+      return;
+    }
+    console.log(`Canvas luotu nimellä: ${canvasName}`);
+    setCanvasName(""); // Tyhjennetään syöttökenttä
+  };
 
   useLayoutEffect(() => {
     const canvas = document.getElementById("canvas") as HTMLCanvasElement;
@@ -384,6 +399,18 @@ export default function App() {
   return (
     <div>
       <Info />
+      <div className="canvas-name-container">
+        <input
+          type="text"
+          value={canvasName}
+          onChange={handleCanvasNameChange}
+          placeholder="Anna canvakselle nimi"
+          className="canvas-name-input"
+        />
+       {/*  <button onClick={handleCreateCanvas} className="canvas-name-button">
+          Luo Canvas
+        </button> */}
+      </div>
       <ActionBar tool={tool} setTool={setTool} />
       <ControlPanel
         undo={undo}
