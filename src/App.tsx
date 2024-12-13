@@ -16,7 +16,7 @@ import {
   Tools,
   ActionsType,
 } from "./types";
-import { ActionBar, ControlPanel, Info } from "./components";
+import { ActionBar, ControlPanel, Info, ColorPalette } from "./components";
 import {
   adjustElementCoordinates,
   adjustmentRequired,
